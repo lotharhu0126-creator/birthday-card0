@@ -1,0 +1,114 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Montserrat:wght@300;400&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+  background: black;
+  overflow: hidden;
+}
+
+#scene {
+  position: fixed;
+  inset: 0;
+}
+
+/* NỀN MỜ */
+#blur-bg {
+  position: fixed;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  filter: blur(35px) brightness(0.55);
+  transform: scale(1.3);
+  z-index: 1;
+}
+
+/* KHUNG ẢNH ẢO */
+#card {
+  position: relative;
+  z-index: 2;
+  width: 90vw;
+  max-width: 420px;
+  aspect-ratio: 3 / 4.5;
+  margin: auto;
+  top: 50%;
+  transform: translateY(-50%);
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow: 0 30px 80px rgba(0,0,0,0.6);
+}
+
+/* ẢNH */
+#image-layer {
+  position: absolute;
+  inset: 0;
+  background-position: center;
+  background-size: cover;
+}
+#image-layer,
+#blur-bg {
+  transition: background-image 1.2s ease, opacity 1.2s ease;
+}
+
+/* fade khi đổi ảnh */
+.fade-out {
+  opacity: 0;
+}
+
+.fade-in {
+  opacity: 1;
+}
+
+/* OVERLAY CHỮ */
+#overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    rgba(0,0,0,0.55),
+    rgba(0,0,0,0.1),
+    rgba(0,0,0,0.55)
+  );
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 14%;
+  opacity: 0;
+  transition: opacity 0.8s ease;
+}
+
+/* TEXT ĐẸP */
+#text {
+    font-size: clamp(18px, 4vw, 26px);
+    line-height: 1.6;              /* QUAN TRỌNG – chống dính chữ */
+    letter-spacing: 0.5px;
+    white-space: pre-line;         /* giữ xuống dòng \n */
+    text-align: center;
+    color: #fff;
+    font-weight: 400;
+  }
+  
+
+/* HINT */
+#hint {
+  position: fixed;
+  bottom: 20px;
+  width: 100%;
+  text-align: center;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.9rem;
+  color: rgba(255,255,255,0.85);
+  animation: blink 1.5s infinite;
+  z-index: 3;
+}
+
+@keyframes blink {
+  0%,100% { opacity: 0.3; }
+  50% { opacity: 1; }
+}
